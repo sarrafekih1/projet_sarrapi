@@ -6,6 +6,8 @@ import edu.esprit.services.ServiceExposition;
 import edu.esprit.services.ServicePersonne;
 import edu.esprit.services.ServiceReservation;
 import edu.esprit.utils.DataSource;
+
+import java.security.Provider;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -21,13 +23,45 @@ public class Main {
 
         Exposition e=new Exposition();
         User p = new User();
+        Reservation r = new Reservation();
 
-        //Reservation r=new Reservation();
-        //r.setDateReser(new Timestamp(System.currentTimeMillis()));
-        //r.setTicketsNumber(2);
-       // r.setAccessByAdmin(true);
-       // r.setExposition(Exposition);
-       // r.setClient(new User());
+///////////////:REESERVATION/::::::::::::::::::::::::::::
+         //Création d'une réservation
+//        r.setDateReser(Timestamp.valueOf(LocalDateTime.now())); // Utilisation de la date actuelle
+//        r.setTicketsNumber(6);
+//        r.setAccessByAdmin(false);
+//        Exposition exp_add_reser=exposition.getOneById(6);
+//        r.setExposition(exp_add_reser); // Association avec l'exposition1
+//        User user_add_rese=personne.getOneById(3);
+//        r.setClient(user_add_rese); //
+//        reservation.ajouter(r);
+
+//        //modifier reservation
+//        r.setIdReservation(1);
+//        r.setDateReser(Timestamp.valueOf(LocalDateTime.now())); // Utilisation de la date actuelle
+//        r.setTicketsNumber(3);
+//        r.setAccessByAdmin(true);
+//        Exposition exp_reser=exposition.getOneById(4);
+//        r.setExposition(exp_reser); // Association avec l'exposition1
+//        User user_rese=personne.getOneById(1);
+//        r.setClient(user_rese); //
+//        reservation.modifier(r);
+
+        //get  id de  reservation
+//    System.out.println(reservation.getOneById(1));
+
+        //afficher tout les reservations
+        //System.out.println(reservation.getAll());
+
+        //delete reservation
+        //reservation.supprimer(3);
+
+
+
+
+
+
+        ///////////////:EXPOSITION/::::::::::::::::::::::::::::
 
 ////////********ajouterrrrr exposition********////////
 //        e.setNom("hellll");
@@ -39,7 +73,7 @@ public class Main {
 //        exposition.ajouter(e);
 
         //////////afficher///////////
-        System.out.println(exposition.getAll());
+       // System.out.println(exposition.getAll());
 
         //////////modifier////////
         // Modification de l'exposition
@@ -56,10 +90,10 @@ public class Main {
 //        System.out.println(exposition.getAll());
 
         ////*********afficher par id********//
-        System.out.println(exposition.getOneById(4));
+//        System.out.println(exposition.getOneById(4));
 
         ////******deleted*****//////
-        exposition.supprimer(7);
+//        exposition.supprimer(7);
 
 
 

@@ -87,6 +87,18 @@ public class Reservation {
     }
 
     @Override
+    public String toString() {
+        return "Reservation{" +
+
+                ", dateReser=" + dateReser +
+                ", ticketsNumber=" + ticketsNumber +
+                ", accessByAdmin=" + accessByAdmin +
+                ", exposition=" + exposition +
+                ", client=" + client +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(getIdReservation());
     }

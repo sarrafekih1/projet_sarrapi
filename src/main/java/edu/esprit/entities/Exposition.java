@@ -1,6 +1,7 @@
 package edu.esprit.entities;
 
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -32,6 +33,8 @@ public class Exposition {
         this.theme = theme;
         this.image = image;
     }
+
+
 
     public int getId() {
         return id;

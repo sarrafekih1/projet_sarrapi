@@ -9,7 +9,7 @@ public class User {
     private String prenom_user;
     private String email;
     private String mdp;
-    private String num_tel;
+    private int num_tel;
     private Date date;
     private String cartepro;
     private String role;
@@ -17,7 +17,7 @@ public class User {
 
     }
 
-    public User(String nom_user, String prenom_user, String email, String mdp, String num_tel, Date date, String cartepro, String role) {
+    public User(String nom_user, String prenom_user, String email, String mdp, int num_tel, Date date, String cartepro, String role) {
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
         this.email = email;
@@ -28,7 +28,7 @@ public class User {
         this.role = role;
     }
 
-    public User(int id_user, String nom_user, String prenom_user, String email, String mdp, String num_tel, Date date, String cartepro, String role) {
+    public User(int id_user, String nom_user, String prenom_user, String email, String mdp, int num_tel, Date date, String cartepro, String role) {
         this.id_user = id_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
@@ -80,11 +80,11 @@ public class User {
         this.mdp = mdp;
     }
 
-    public String getNum_tel() {
+    public int getNum_tel() {
         return num_tel;
     }
 
-    public void setNum_tel(String num_tel) {
+    public void setNum_tel(int num_tel) {
         this.num_tel = num_tel;
     }
 

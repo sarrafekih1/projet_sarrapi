@@ -8,4 +8,5 @@ public interface IService<T> {
     public void supprimer(int id);
     public T getOneById(int id);
     public Set<T> getAll();
+
 }

@@ -12,10 +12,19 @@ import java.util.Set;
 public class ServiceReservation implements IService<Reservation> {
     Connection cnx= DataSource.getInstance().getCnx();
 
+    private boolean isValidReservation(Reservation r) {
+        // Check your constraints here
+        if (r.getDateReser() == null || r.getTicketsNumber() <= 0 || r.getExposition() == null || r.getClient() == null) {
+            return false;
+        }
 
+        return true;
+    }
     @Override
     public void ajouter(Reservation r) {
-        String req="INSERT INTO `reservation`(`date_reser`, `tickets_number`,`accessByAdmin`,`id_exposition`,`id_user`) VALUES (?,?,?,?,?)";
+        if (isValidReservation(r)) {
+
+            String req="INSERT INTO `reservation`(`date_reser`, `tickets_number`,`accessByAdmin`,`id_exposition`,`id_user`) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps=cnx.prepareStatement(req);
             ps.setTimestamp(1,r.getDateReser());
@@ -32,12 +41,14 @@ public class ServiceReservation implements IService<Reservation> {
         }catch(SQLException e){
             System.out.println(e.getMessage());
 
-        }
+        }}
     }
 
     @Override
     public void modifier(Reservation r) {
-        String req = "UPDATE reservation SET date_reser=?, tickets_number=?, accessByAdmin=?, id_exposition=?, id_user=? WHERE id_reservation=?";
+        if (isValidReservation(r)) {
+
+            String req = "UPDATE reservation SET date_reser=?, tickets_number=?, accessByAdmin=?, id_exposition=?, id_user=? WHERE id_reservation=?";
         try{
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setTimestamp(1, r.getDateReser());
@@ -55,7 +66,7 @@ public class ServiceReservation implements IService<Reservation> {
         }catch (SQLException e) {
             System.out.println(e.getMessage());
 
-        }
+        }}
 
 
     }
@@ -137,6 +148,37 @@ public class ServiceReservation implements IService<Reservation> {
         }
         return reservations;
     }
+
+
+    public Set<Reservation> triparDateAncienne() {
+        Set<Reservation> reservations = new HashSet<>();
+        String req = "SELECT * FROM reservation ORDER BY Date_reser ASC";  // Order by Date_reser in ascending order
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet res = st.executeQuery(req);
+            while (res.next()) {
+                int id = res.getInt(1);
+                Timestamp datereser = res.getTimestamp("Date_reser");
+                int ticketsNumber = res.getInt("tickets_number");
+                boolean accessByAdmin = res.getBoolean("accessByAdmin");
+                int idExposition = res.getInt("id_exposition");
+                int id_user = res.getInt("id_user");
+
+                ServiceExposition serviceExposition = new ServiceExposition();
+                Exposition exposition = serviceExposition.getOneById(idExposition);
+
+                ServicePersonne servicePersonne = new ServicePersonne();
+                User user = servicePersonne.getOneById(id_user);
+
+                Reservation reser = new Reservation(id, datereser, ticketsNumber, accessByAdmin, exposition, user);
+                reservations.add(reser);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return reservations;
+    }
+
 
 }
 

@@ -26,20 +26,20 @@ public class Main {
         Reservation r = new Reservation();
 
 ///////////////:REESERVATION/::::::::::::::::::::::::::::
-         //Création d'une réservation
+        // Création d'une réservation
 //        r.setDateReser(Timestamp.valueOf(LocalDateTime.now())); // Utilisation de la date actuelle
-//        r.setTicketsNumber(6);
+//        r.setTicketsNumber(4);
 //        r.setAccessByAdmin(false);
-//        Exposition exp_add_reser=exposition.getOneById(6);
+//        Exposition exp_add_reser=exposition.getOneById(9);
 //        r.setExposition(exp_add_reser); // Association avec l'exposition1
-//        User user_add_rese=personne.getOneById(3);
+//        User user_add_rese=personne.getOneById(1);
 //        r.setClient(user_add_rese); //
 //        reservation.ajouter(r);
 
 //        //modifier reservation
 //        r.setIdReservation(1);
 //        r.setDateReser(Timestamp.valueOf(LocalDateTime.now())); // Utilisation de la date actuelle
-//        r.setTicketsNumber(3);
+//        r.setTicketsNumber(10);
 //        r.setAccessByAdmin(true);
 //        Exposition exp_reser=exposition.getOneById(4);
 //        r.setExposition(exp_reser); // Association avec l'exposition1
@@ -54,7 +54,10 @@ public class Main {
         //System.out.println(reservation.getAll());
 
         //delete reservation
-        //reservation.supprimer(3);
+//        reservation.supprimer(6);
+
+        //tri par date ancienne
+        //System.out.println(reservation.triparDateAncienne());
 
 
 
@@ -64,10 +67,10 @@ public class Main {
         ///////////////:EXPOSITION/::::::::::::::::::::::::::::
 
 ////////********ajouterrrrr exposition********////////
-//        e.setNom("hellll");
+//        e.setNom("kitty");
 //        e.setTheme("magic");
-//        e.setDateDebut(Timestamp.valueOf(LocalDateTime.of(2022, 3, 1, 10, 0))); // Remplacez avec votre date et heure de début
-//        e.setDateFin(Timestamp.valueOf(LocalDateTime.of(2022, 3, 10, 18, 0)));
+//        e.setDateDebut(Timestamp.valueOf(LocalDateTime.of(2022, 4, 1, 12, 0))); // Remplacez avec votre date et heure de début
+//        e.setDateFin(Timestamp.valueOf(LocalDateTime.of(2022, 5, 10, 18, 0)));
 //        e.setDescription("mlkjhgf");
 //        e.setImage("/images/art/comique");
 //        exposition.ajouter(e);
@@ -77,11 +80,12 @@ public class Main {
 
         //////////modifier////////
         // Modification de l'exposition
-//        e.setId(1);
-//        e.setNom("Exposition Modifiée");
+//        e.setId(10);
+//        e.setNom("kitty");
 //        e.setDescription("Nouvelle description");
-//        e.setDateFin(Timestamp.valueOf(LocalDateTime.of(2022, 3, 10, 19, 0)));
-//        e.setTheme("Nouveau thème");
+//        e.setDateDebut(Timestamp.valueOf(LocalDateTime.of(2022, 3, 10, 19, 0)));
+//        e.setDateFin(Timestamp.valueOf(LocalDateTime.of(2022, 5, 10, 19, 0)));
+//        e.setTheme("love");
 //        e.setImage("/images/image_modifiee.jpg");
 //        exposition.modifier(e);
 //
@@ -94,6 +98,9 @@ public class Main {
 
         ////******deleted*****//////
 //        exposition.supprimer(7);
+
+        //chercher//
+       // System.out.println(exposition.chercherParThemeOuNom("magic",""));
 
 
 

@@ -52,9 +52,12 @@ public class Reservation {
     }
 
     public void setTicketsNumber(int ticketsNumber) {
-        this.ticketsNumber = ticketsNumber;
+        if (ticketsNumber > 0) {
+            this.ticketsNumber = ticketsNumber;
+        } else {
+            System.out.println("Erreur : Le nombre de tickets doit être positif.");
+        }
     }
-
     public boolean isAccessByAdmin() {
         return accessByAdmin;
     }

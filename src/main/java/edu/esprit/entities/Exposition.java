@@ -20,7 +20,9 @@ public class Exposition {
         this.nom = nom;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.description = description;
+        this.description =
+
+                description;
         this.theme = theme;
         this.image = image;
     }
@@ -49,7 +51,9 @@ public class Exposition {
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+
+            this.nom = nom;
+
     }
 
     public Timestamp getDateDebut() {
@@ -57,17 +61,17 @@ public class Exposition {
     }
 
     public void setDateDebut(Timestamp dateDebut) {
-        this.dateDebut = dateDebut;
-    }
+            this.dateDebut = dateDebut;
 
+    }
     public Timestamp getDateFin() {
         return dateFin;
     }
 
     public void setDateFin(Timestamp dateFin) {
-        this.dateFin = dateFin;
-    }
+            this.dateFin = dateFin;
 
+    }
     public String getDescription() {
         return description;
     }

@@ -10,8 +10,21 @@ import java.util.Set;
 
 public class ServiceExposition implements IService<Exposition>  {
 Connection cnx= DataSource.getInstance().getCnx();
+    private boolean isValidString(String value) {
+        return value != null && !value.trim().isEmpty();
+    }
     @Override
     public void ajouter(Exposition exp) {
+        if (exp.getDateDebut() != null && exp.getDateFin() != null && exp.getDateDebut().after(exp.getDateFin())) {
+            System.out.println("Erreur : La date de fin doit être après la date de début.");
+            return;  // exit the method if the condition is not met
+        }
+
+        if (!isValidString(exp.getNom()) || !isValidString(exp.getTheme()) || !isValidString(exp.getImage())) {
+            System.out.println("Erreur : Le nom, le thème et l'image de l'exposition doivent être valides.");
+            return;  // exit the method if the condition is not met
+        }
+
         String req = "INSERT INTO `exposition` (nom, Date_debut, Date_fin, Description, Theme, image) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -22,16 +35,23 @@ Connection cnx= DataSource.getInstance().getCnx();
             ps.setString(5, exp.getTheme());
             ps.setString(6, exp.getImage());
             ps.executeUpdate();
-            System.out.println("exposition added succesfully !");
+            System.out.println("exposition added successfully!");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-
         }
-
     }
     @Override
     public void modifier(Exposition exp) {
+        if (exp.getDateDebut() != null && exp.getDateFin() != null && exp.getDateDebut().after(exp.getDateFin())) {
+            System.out.println("Erreur : La date de fin doit être après la date de début.");
+            return;
+        }
+
+        if (!isValidString(exp.getNom()) || !isValidString(exp.getTheme()) || !isValidString(exp.getImage())) {
+            System.out.println("Erreur : Le nom, le thème et l'image de l'exposition doivent être valides.");
+            return;  // exit the method if the condition is not met
+        }
         String req = "UPDATE exposition SET nom=?, Date_debut=?, Date_fin=?, Description=?, Theme=?, image=? WHERE id_exposition=?";
         try{
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -118,5 +138,36 @@ Connection cnx= DataSource.getInstance().getCnx();
        }
        return expositions;
     }
+    public Set<Exposition> chercherParThemeOuNom(String theme, String nom) {
+        Set<Exposition> result = new HashSet<>();
+        String req = "SELECT * FROM exposition WHERE Theme LIKE ? AND nom LIKE ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, "%" + theme + "%");
+            ps.setString(2, "%" + nom + "%");
+            ResultSet res = ps.executeQuery();
+
+            while (res.next()) {
+                int id = res.getInt(1);
+                String expositionNom = res.getString(2);
+                Timestamp dateDebut = res.getTimestamp(3);
+                Timestamp dateFin = res.getTimestamp(4);
+                String description = res.getString(5);
+                String expositionTheme = res.getString(6);
+                String image = res.getString(7);
+
+                Exposition exp = new Exposition(id, expositionNom, dateDebut, dateFin, description, expositionTheme, image);
+                result.add(exp);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return result;
+    }
+
+
+
+
 
 }
